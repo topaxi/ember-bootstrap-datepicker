@@ -11,7 +11,5 @@ module.exports = function(defaults) {
     destDir: 'assets'
   });
 
-  app.import(app.bowerDirectory + '/bootstrap-datepicker/dist/locales/bootstrap-datepicker.de.min.js');
-
   return app.toTree();
 };

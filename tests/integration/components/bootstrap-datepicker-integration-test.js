@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import hbs from 'htmlbars-inline-precompile';
 import { moduleForComponent, test } from 'ember-qunit';
 
@@ -135,4 +136,16 @@ test('triggers changeMonth when month is changed', function(assert) {
   this.$('.prev:visible').trigger('click');
   assert.ok(lastDate instanceof Date, 'date is passed to action as argument');
   assert.equal(lastDate.getMonth(), new Date().getMonth(), 'passed date is correct');
+});
+
+test('works with localization', function(assert) {
+  assert.expect(1);
+
+  this.set('date', new Date('2017-03-21'));
+  this.render(hbs`
+    {{bootstrap-datepicker value=date language="de"}}
+  `);
+  this.$('input.ember-text-field').datepicker('show');
+
+  assert.equal($('.datepicker-switch').html(), 'März 2017');
 });

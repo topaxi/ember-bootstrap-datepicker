@@ -46,6 +46,9 @@
     "datepicker"
   ],
   "dependencies": {
+    "bootstrap-datepicker": "^1.6.4",
+    "broccoli-funnel": "^1.1.0",
+    "broccoli-merge-trees": "^2.0.0",
     "ember-cli-babel": "^5.1.5"
   },
   "main": "index.js",
