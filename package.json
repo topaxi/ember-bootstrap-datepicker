@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-bootstrap-datepicker",
-  "version": "0.5.6",
+  "version": "1.0.0",
   "description": "Datepicker component for Ember CLI based on bootstrap-datepicker. It doesn't have any external dependency except bootstrap-datepicker, supports popup and inline modes.",
   "directories": {
     "doc": "doc",
@@ -11,11 +11,11 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "https://github.com/soulim/ember-cli-bootstrap-datepicker",
+  "repository": "https://github.com/topaxi/ember-bootstrap-datepicker",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 4.0.0"
   },
-  "author": "Alex Sulim",
+  "author": "Damian Senn <damian.senn@topaxi.codes>",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
@@ -55,7 +55,6 @@
   "ember-addon": {
     "configPath": "tests/dummy/config",
     "defaultBlueprint": "bootstrap-datepicker",
-    "demoURL": "http://sul.im/ember-cli-bootstrap-datepicker/",
     "main": "index.js"
   }
 }

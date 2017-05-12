@@ -1,8 +1,12 @@
 # Ember CLI datepicker add-on
 
-[![Build Status](https://travis-ci.org/soulim/ember-cli-bootstrap-datepicker.svg?branch=master&style=flat)](https://travis-ci.org/soulim/ember-cli-bootstrap-datepicker)
-[![Ember Observer Score](http://emberobserver.com/badges/ember-cli-bootstrap-datepicker.svg)](http://emberobserver.com/addons/ember-cli-bootstrap-datepicker)
-[![Code Climate](https://codeclimate.com/github/soulim/ember-cli-bootstrap-datepicker/badges/gpa.svg)](https://codeclimate.com/github/soulim/ember-cli-bootstrap-datepicker)
+[![Build Status](https://travis-ci.org/topaxi/ember-bootstrap-datepicker.svg?branch=master&style=flat)](https://travis-ci.org/topaxi/ember-bootstrap-datepicker)
+[![Ember Observer Score](http://emberobserver.com/badges/ember-bootstrap-datepicker.svg)](http://emberobserver.com/addons/ember-bootstrap-datepicker)
+[![Code Climate](https://codeclimate.com/github/topaxi/ember-bootstrap-datepicker/badges/gpa.svg)](https://codeclimate.com/github/topaxi/ember-bootstrap-datepicker)
+
+Fork of the awesome [ember-cli-bootstrap-datepicker](https://github.com/soulim/ember-cli-bootstrap-datepicker).
+
+This fork can be used _without_ bower.
 
 The add-on provides you a date input component based on amazing bootstrap-datepicker library. It supports popup and inline mode, and can be used in Ember CLI applications.
 
@@ -12,23 +16,8 @@ It doesn't have any external dependecy except bootstrap-datepicker.
 
 ## Installation
 
-If you are using Ember CLI 0.2.3 or higher, just run within your project directory:
-
 ```bash
 ember install ember-cli-bootstrap-datepicker
-```
-
-If your Ember CLI version is greater than 0.1.5 and less than 0.2.3, run the following within your project directory:
-
-```bash
-ember install:addon ember-cli-bootstrap-datepicker
-```
-
-When your Ember CLI version is below 0.1.5, please run within your project directory:
-
-```bash
-npm install --save-dev ember-cli-bootstrap-datepicker
-ember generate bootstrap-datepicker
 ```
 
 ## Usage
