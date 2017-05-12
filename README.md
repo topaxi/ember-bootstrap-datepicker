@@ -310,7 +310,7 @@ Action called has new view date as first argument.
 
 ```javascript
 actions: {
-  changeDateAction(date) {
+  changeMonthAction(date) {
     // do sth with the new view date
   }
 }
