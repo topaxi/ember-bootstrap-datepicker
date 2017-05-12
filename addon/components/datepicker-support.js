@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+const { on, run } = Ember;
+
 export default Ember.Mixin.create({
   mustUpdateInput: true,
   value: null,
@@ -9,11 +11,11 @@ export default Ember.Mixin.create({
   language: undefined,
   startDate: undefined,
   endDate: undefined,
-  customParser: function(value) {
+  customParser(value) {
     return value;
   },
 
-  setupBootstrapDatepicker: Ember.on('didInsertElement', function() {
+  setupBootstrapDatepicker: on('didInsertElement', function() {
 
     this.$().
       datepicker({
@@ -46,7 +48,7 @@ export default Ember.Mixin.create({
         datesDisabled: this.get('datesDisabled')
       }).
       on('changeDate', event => {
-        Ember.run(() => {
+        run(() => {
           this._didChangeDate(event);
         });
       }).
@@ -60,7 +62,7 @@ export default Ember.Mixin.create({
         this.sendAction('focus-in', this, event);
       }).
       on('clearDate', event => {
-        Ember.run(() => {
+        run(() => {
           this._didChangeDate(event);
         });
       }).
@@ -74,7 +76,7 @@ export default Ember.Mixin.create({
     this._updateDatepicker();
   }),
 
-  teardownBootstrapDatepicker: Ember.on('willDestroyElement', function() {
+  teardownBootstrapDatepicker: on('willDestroyElement', function() {
     this.$().datepicker('remove');
   }),
 
@@ -83,7 +85,7 @@ export default Ember.Mixin.create({
   }),
 
   _didChangeDate(event) {
-    var value = null;
+    let value = null;
 
     if (event.date) {
       if (this.get('multidate')) {
@@ -102,7 +104,7 @@ export default Ember.Mixin.create({
     }
   },
 
-  _addObservers: Ember.on('didInsertElement', function() {
+  _addObservers: on('didInsertElement', function() {
     this.addObserver('language', function() {
       this.$().datepicker('remove');
       this.setupBootstrapDatepicker();
@@ -137,11 +139,11 @@ export default Ember.Mixin.create({
     });
   }),
 
-  _updateDatepicker: function() {
-    var element = this.$(),
-        value = this.get('value'),
-        customParser = this.get('customParser'),
-        dates = [];
+  _updateDatepicker() {
+    let element = this.$();
+    let value = this.get('value');
+    let customParser = this.get('customParser');
+    let dates = [];
 
     if (!this.get('mustUpdateInput')) {
       this.set('mustUpdateInput', true);
@@ -160,9 +162,9 @@ export default Ember.Mixin.create({
       default:
         dates = [null];
     }
-    dates = dates.map(date => {
-      return (Ember.isNone(date)) ? null : this._getDateCloneWithNoTime(date);
-    });
+    dates = dates.map(date =>
+      Ember.isNone(date) ? null : this._getDateCloneWithNoTime(date)
+    );
 
     element.datepicker
            .apply(element, Array.prototype.concat.call(['update'], dates));
@@ -171,8 +173,8 @@ export default Ember.Mixin.create({
   // HACK: Have to reset time to 00:00:00 because of the bug in
   //       bootstrap-datepicker
   //       Issue: http://git.io/qH7Hlg
-  _getDateCloneWithNoTime: function(date) {
-    var clone = new Date(date.getTime());
+  _getDateCloneWithNoTime(date) {
+    let clone = new Date(date.getTime());
 
     clone.setHours(0);
     clone.setMinutes(0);
@@ -188,9 +190,9 @@ export default Ember.Mixin.create({
    * @param  {Object} obj The object to check
    * @return {Object} The object as a String
    */
-  _toString: function (obj) {
-    if (typeof obj !== typeof Undefined && obj !== typeof String) {
-      if (typeof obj.toString === typeof Function) {
+  _toString(obj) {
+    if (obj !== undefined && obj !== 'function') {
+      if (typeof obj.toString === 'function') {
         obj = obj.toString();
       } else {
         // No toString() method available - There is nothing else that can be done
