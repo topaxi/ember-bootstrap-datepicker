@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-# Run tests on the continuous integration server
-#
-# Usage: script/cibuild
-
-set -o errexit
-
-ember try $EMBER_TRY_SCENARIO test
