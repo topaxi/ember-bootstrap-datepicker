@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import DatepickerSupport from 'ember-cli-bootstrap-datepicker/components/datepicker-support';
+import DatepickerSupport from 'ember-bootstrap-datepicker/components/datepicker-support';
 
 export default Ember.Component.extend(DatepickerSupport, {
   instrumentDisplay: '{{input type="text"}}',

@@ -1,4 +1,4 @@
-/* jshint node: true */
+/* eslint-env node */
 'use strict';
 
 var fs = require('fs');
@@ -7,7 +7,7 @@ var Funnel = require('broccoli-funnel');
 var mergeTrees = require('broccoli-merge-trees');
 
 module.exports = {
-  name: 'ember-cli-bootstrap-datepicker',
+  name: 'ember-bootstrap-datepicker',
 
   included: function(app) {
     this._super.included.apply(this, arguments);

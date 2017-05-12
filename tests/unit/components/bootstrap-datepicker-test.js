@@ -5,6 +5,7 @@ import Ember from 'ember';
 var App;
 
 moduleForComponent('bootstrap-datepicker', 'BootstrapDatepickerComponent', {
+  unit: true,
   beforeEach: function() {
     App = startApp();
   },

@@ -82,7 +82,7 @@ export default Ember.Mixin.create({
     this._updateDatepicker();
   }),
 
-  _didChangeDate: function(event) {
+  _didChangeDate(event) {
     var value = null;
 
     if (event.date) {
