@@ -3,8 +3,10 @@
 
 var fs = require('fs');
 var path = require('path');
+
 var Funnel = require('broccoli-funnel');
 var mergeTrees = require('broccoli-merge-trees');
+var map = require('broccoli-stew').map;
 
 module.exports = {
   name: 'ember-bootstrap-datepicker',
@@ -12,35 +14,32 @@ module.exports = {
   included: function(app) {
     this._super.included.apply(this, arguments);
 
-    if (process.env.EMBER_CLI_FASTBOOT !== 'true') {
-      // see: https://github.com/ember-cli/ember-cli/issues/3718
-      while (typeof app.import !== 'function' && app.app) {
+    // see: https://github.com/ember-cli/ember-cli/issues/3718
+    while (typeof app.import !== 'function' && app.app) {
         app = app.app;
-      }
+    }
 
-      this.app = app;
-      this.bootstrapDatepickerOptions = this.getConfig();
+    this.app = app;
+    this.bootstrapDatepickerOptions = this.getConfig();
 
-      var vendor = this.treePaths.vendor;
+    var vendor = this.treePaths.vendor;
 
-      app.import({
-        development: vendor + '/bootstrap-datepicker/js/bootstrap-datepicker.js',
-        production: vendor + '/bootstrap-datepicker/js/bootstrap-datepicker.min.js'
-      });
+    app.import({
+	    development: vendor + '/bootstrap-datepicker/js/bootstrap-datepicker.js',
+      production: vendor + '/bootstrap-datepicker/js/bootstrap-datepicker.min.js'
+		});
 
-      app.import({
-        development: vendor + '/bootstrap-datepicker/css/bootstrap-datepicker.css',
-        production: vendor +  '/bootstrap-datepicker/css/bootstrap-datepicker.min.css'
-      }, { prepend: true });
+    app.import({
+	    development: vendor + '/bootstrap-datepicker/css/bootstrap-datepicker.css',
+      production: vendor +  '/bootstrap-datepicker/css/bootstrap-datepicker.min.css'
+		}, { prepend: true });
 
-      if (this.bootstrapDatepickerOptions.includeLocales.length) {
+    if (this.bootstrapDatepickerOptions.includeLocales.length) {
         this.bootstrapDatepickerOptions.includeLocales.forEach(function(locale) {
           app.import(vendor +
-            '/bootstrap-datepicker/locales/bootstrap-datepicker.' + locale +
-            '.min.js'
-          );
-        });
-      }
+            '/bootstrap-datepicker/locales/bootstrap-datepicker.' + locale + '.min.js'
+			   );
+	    });
     }
   },
 
@@ -94,10 +93,18 @@ module.exports = {
     }
 
     var bootstrapDatepickerPath = this.bootstrapDatepickerOptions.path;
+    var datePickerJsTree =  new Funnel(bootstrapDatepickerPath, {
+      destDir: 'bootstrap-datepicker',
+      include: ['js/*.js']
+    });
 
+    datePickerJsTree = map(datePickerJsTree,
+        (content) => `if (typeof FastBoot === 'undefined') { ${content} }`);
+
+    trees.push(datePickerJsTree);
     trees.push(new Funnel(bootstrapDatepickerPath, {
       destDir: 'bootstrap-datepicker',
-      include: ['js/*.js', 'css/*.css']
+      include: ['css/*.css']
     }));
 
     if (this.bootstrapDatepickerOptions.includeLocales.length) {
@@ -106,7 +113,6 @@ module.exports = {
         destDir: 'bootstrap-datepicker/locales'
       }));
     }
-
     return mergeTrees(trees);
   }
 };
