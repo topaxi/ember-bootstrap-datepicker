@@ -1,4 +1,4 @@
-# Ember CLI datepicker add-on
+# Ember Datepicker add-on
 
 [![Build Status](https://travis-ci.org/topaxi/ember-bootstrap-datepicker.svg?branch=master&style=flat)](https://travis-ci.org/topaxi/ember-bootstrap-datepicker)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-bootstrap-datepicker.svg)](http://emberobserver.com/addons/ember-bootstrap-datepicker)
@@ -6,7 +6,7 @@
 
 Fork of the awesome [ember-cli-bootstrap-datepicker](https://github.com/soulim/ember-cli-bootstrap-datepicker).
 
-This fork can be used _without_ bower.
+This fork can be used _without_ bower and works with Fastboot.
 
 The add-on provides you a date input component based on amazing bootstrap-datepicker library. It supports popup and inline mode, and can be used in Ember CLI applications.
 
@@ -17,7 +17,7 @@ It doesn't have any external dependecy except bootstrap-datepicker.
 ## Installation
 
 ```bash
-ember install ember-cli-bootstrap-datepicker
+ember install ember-bootstrap-datepicker
 ```
 
 ## Usage
@@ -393,4 +393,4 @@ The add-on is based on [bootstrap-datepicker](https://github.com/eternicode/boot
 
 ## License
 
-[MIT License](https://github.com/soulim/ember-cli-bootstrap-datepicker/blob/master/LICENSE.md)
+[MIT License](https://github.com/topaxi/ember-bootstrap-datepicker/blob/master/LICENSE.md)
