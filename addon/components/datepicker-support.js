@@ -77,7 +77,7 @@ export default Ember.Mixin.create({
   }),
 
   teardownBootstrapDatepicker: on('willDestroyElement', function() {
-    this.$().datepicker('remove');
+    this.$().datepicker('destroy');
   }),
 
   didChangeValue: Ember.observer('value', function() {
@@ -106,7 +106,7 @@ export default Ember.Mixin.create({
 
   _addObservers: on('didInsertElement', function() {
     this.addObserver('language', function() {
-      this.$().datepicker('remove');
+      this.$().datepicker('destroy');
       this.setupBootstrapDatepicker();
     });
 
