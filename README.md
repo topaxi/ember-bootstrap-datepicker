@@ -184,6 +184,13 @@ Default: `'en'`
 {{bootstrap-datepicker value=expiresAt language="de"}}
 ```
 
+THe relevant file containing the language definition needs to be importet in your `ember-cli-build.js` file.
+
+```javascript
+app.import('bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.de.min.js');
+```
+
+
 #### minViewMode
 
 Set a minimum limit for the view mode. Accepts: “days” or 0, “months” or 1, “years” or 2, “decades” or 3, and 
