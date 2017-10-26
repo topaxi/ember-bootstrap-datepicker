@@ -8,8 +8,8 @@ module.exports = function(defaults) {
     // Add options here
   });
 
-  app.import(app.bowerDirectory + '/bootstrap/dist/css/bootstrap.css');
-  app.import(app.bowerDirectory + '/bootstrap/dist/css/bootstrap.css.map', {
+  app.import('node_modules/bootstrap/dist/css/bootstrap.css');
+  app.import('node_modules/bootstrap/dist/css/bootstrap.css.map', {
     destDir: 'assets'
   });
 
