@@ -16,7 +16,6 @@ export default Ember.Mixin.create({
   },
 
   setupBootstrapDatepicker: on('didInsertElement', function() {
-
     this.$().
       datepicker({
         autoclose: this.get('autoclose'),
@@ -104,7 +103,7 @@ export default Ember.Mixin.create({
     }
   },
 
-  _addObservers: on('didInsertElement', function() {
+  didInsertElement() {
     this.addObserver('language', function() {
       this.$().datepicker('destroy');
       this.setupBootstrapDatepicker();
@@ -137,7 +136,7 @@ export default Ember.Mixin.create({
       this.$().data('datepicker')._process_options({format: format});
       this._updateDatepicker();
     });
-  }),
+  },
 
   _updateDatepicker() {
     let element = this.$();
@@ -166,8 +165,7 @@ export default Ember.Mixin.create({
       Ember.isNone(date) ? null : this._getDateCloneWithNoTime(date)
     );
 
-    element.datepicker
-           .apply(element, Array.prototype.concat.call(['update'], dates));
+    element.datepicker('update', ...dates);
   },
 
   // HACK: Have to reset time to 00:00:00 because of the bug in

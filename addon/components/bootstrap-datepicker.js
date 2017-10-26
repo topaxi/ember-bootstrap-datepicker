@@ -37,5 +37,21 @@ export default Ember.Component.extend(DatepickerSupport, {
     'type'
   ],
 
-  type: 'text'
+  type: 'text',
+
+  forceParse: true,
+
+  focusOut() {
+    if (this.get('forceParse')) {
+      this._forceParse();
+    }
+  },
+
+  _forceParse() {
+    let date = Date.parse(this.element.value);
+
+    if (!isNaN(date)) {
+      this.set('value', new Date(date));
+    }
+  }
 });

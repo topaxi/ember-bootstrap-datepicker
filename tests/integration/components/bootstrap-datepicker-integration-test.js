@@ -149,3 +149,18 @@ test('works with localization', function(assert) {
 
   assert.equal($('.datepicker-switch').html(), 'März 2017');
 });
+
+test('works with input changes', function(assert) {
+  assert.expect(2);
+
+  this.render(hbs`
+    {{bootstrap-datepicker value=date}}
+  `);
+  this.$('input.ember-text-field')
+    .val('2017-10-26')
+    .trigger('blur');
+
+  assert.ok(/Thu Oct 26 2017/.test(String(this.get('date'))));
+  this.$('input.ember-text-field').datepicker('show');
+  assert.equal($('.datepicker-switch').html(), 'October 2017');
+});
