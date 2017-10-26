@@ -69,6 +69,9 @@ export default Ember.Mixin.create({
         this.sendAction('show');
       }).
       on('hide', () => {
+        run(() => {
+          this._useHandTypedValue();
+        });
         this.sendAction('hide');
       });
 
@@ -198,5 +201,15 @@ export default Ember.Mixin.create({
       }
     }
     return obj;
+  },
+
+  /**
+  * Fix Issue #3
+  */
+  _useHandTypedValue() {
+    let value = new Date(this.$().val());
+    if (value.toString() !== 'Invalid Date') {
+      this.set('value', value);
+    }
   }
 });
