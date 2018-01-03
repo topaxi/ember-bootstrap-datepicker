@@ -164,3 +164,32 @@ test('works with input changes', function(assert) {
   this.$('input.ember-text-field').datepicker('show');
   assert.equal($('.datepicker-switch').html(), 'October 2017');
 });
+
+test('works with european format', function(assert) {
+  assert.expect(1);
+
+  this.render(hbs`
+    {{bootstrap-datepicker value=date format="dd.mm.yyyy"}}
+  `);
+
+  this.$('input.ember-text-field')
+    .val('12.10.2017')
+    .trigger('blur');
+
+  assert.ok(/Thu Oct 12 2017/.test(String(this.get('date'))));
+});
+
+test('works input shortened format', function(assert) {
+  assert.expect(1);
+
+  this.render(hbs`
+    {{bootstrap-datepicker value=date format="dd.mm.yyyy"}}
+  `);
+
+  this.$('input.ember-text-field')
+    .val('1.5.2017')
+    .trigger('blur');
+
+  assert.ok(/Mon May 01 2017/.test(String(this.get('date'))));
+});
+
