@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import DatepickerSupport from 'ember-bootstrap-datepicker/components/datepicker-support';
-import { isEmpty } from "@ember/utils"
 import $ from 'jquery';
 
 export default Ember.Component.extend(DatepickerSupport, {
@@ -54,7 +53,7 @@ export default Ember.Component.extend(DatepickerSupport, {
     let date = null,
         format = this.get('format');
 
-    if (!isEmpty(this.element.value) && !isEmpty(format)) {
+    if (!Ember.isEmpty(this.element.value) && !Ember.isEmpty(format)) {
       let dpg = $.fn.datepicker.DPGlobal;
       date = dpg.parseDate(this.element.value, dpg.parseFormat(format));
     } else {
