@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { run } from '@ember/runloop';
 import hbs from 'htmlbars-inline-precompile';
 import { moduleForComponent, test } from 'ember-qunit';
 
@@ -156,13 +157,16 @@ test('works with input changes', function(assert) {
   this.render(hbs`
     {{bootstrap-datepicker value=date}}
   `);
-  this.$('input.ember-text-field')
-    .val('2017-10-26')
-    .trigger('hide');
 
-  assert.ok(/Thu Oct 26 2017/.test(String(this.get('date'))));
-  this.$('input.ember-text-field').datepicker('show');
-  assert.equal($('.datepicker-switch').html(), 'October 2017');
+  run(() => {
+    this.$('input.ember-text-field')
+      .val('2017-10-26')
+      .trigger('hide');
+
+    assert.ok(/Thu Oct 26 2017/.test(String(this.get('date'))));
+    this.$('input.ember-text-field').datepicker('show');
+    assert.equal($('.datepicker-switch').html(), 'October 2017');
+  });
 });
 
 test('works with european format', function(assert) {
@@ -172,11 +176,13 @@ test('works with european format', function(assert) {
     {{bootstrap-datepicker value=date format="dd.mm.yyyy"}}
   `);
 
-  this.$('input.ember-text-field')
-    .val('12.10.2017')
-    .trigger('hide');
+  run(() => {
+    this.$('input.ember-text-field')
+      .val('12.10.2017')
+      .trigger('hide');
 
-  assert.ok(/Thu Oct 12 2017/.test(String(this.get('date'))));
+    assert.ok(/Thu Oct 12 2017/.test(String(this.get('date'))));
+  });
 });
 
 test('works input shortened format', function(assert) {
@@ -186,10 +192,12 @@ test('works input shortened format', function(assert) {
     {{bootstrap-datepicker value=date format="dd.mm.yyyy"}}
   `);
 
-  this.$('input.ember-text-field')
-    .val('1.5.2017')
-    .trigger('hide');
+  run(() => {
+    this.$('input.ember-text-field')
+      .val('1.5.2017')
+      .trigger('hide');
 
-  assert.ok(/Mon May 01 2017/.test(String(this.get('date'))));
+    assert.ok(/Mon May 01 2017/.test(String(this.get('date'))));
+  });
 });
 
