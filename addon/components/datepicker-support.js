@@ -69,16 +69,11 @@ export default Ember.Mixin.create({
         this.sendAction('show');
       }).
       on('hide', () => {
-        this._forceParse();
         this.sendAction('hide');
       });
 
     this._updateDatepicker();
   }),
-
-  _forceParse() {
-    // not in support
-  },
 
   teardownBootstrapDatepicker: on('willDestroyElement', function() {
     this.$().datepicker('destroy');

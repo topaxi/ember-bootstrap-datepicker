@@ -1,5 +1,9 @@
 # Ember Bootstrap Datepicker Changelog
 
+### 2.0.7 (February 13, 2018)
+
+- Revert Fix Re-select on second click #7
+
 ### 2.0.6 (February 13, 2018)
 
 - Fix Re-select on second click #7
