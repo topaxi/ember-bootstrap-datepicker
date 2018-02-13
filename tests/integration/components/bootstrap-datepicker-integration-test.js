@@ -158,7 +158,7 @@ test('works with input changes', function(assert) {
   `);
   this.$('input.ember-text-field')
     .val('2017-10-26')
-    .trigger('blur');
+    .trigger('hide');
 
   assert.ok(/Thu Oct 26 2017/.test(String(this.get('date'))));
   this.$('input.ember-text-field').datepicker('show');
@@ -174,7 +174,7 @@ test('works with european format', function(assert) {
 
   this.$('input.ember-text-field')
     .val('12.10.2017')
-    .trigger('blur');
+    .trigger('hide');
 
   assert.ok(/Thu Oct 12 2017/.test(String(this.get('date'))));
 });
@@ -188,7 +188,7 @@ test('works input shortened format', function(assert) {
 
   this.$('input.ember-text-field')
     .val('1.5.2017')
-    .trigger('blur');
+    .trigger('hide');
 
   assert.ok(/Mon May 01 2017/.test(String(this.get('date'))));
 });
