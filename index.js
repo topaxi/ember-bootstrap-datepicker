@@ -16,7 +16,7 @@ module.exports = {
 
     // see: https://github.com/ember-cli/ember-cli/issues/3718
     while (typeof app.import !== 'function' && app.app) {
-        app = app.app;
+      app = app.app;
     }
 
     this.app = app;
@@ -25,21 +25,21 @@ module.exports = {
     var vendor = this.treePaths.vendor;
 
     app.import({
-	    development: vendor + '/bootstrap-datepicker/js/bootstrap-datepicker.js',
+      development: vendor + '/bootstrap-datepicker/js/bootstrap-datepicker.js',
       production: vendor + '/bootstrap-datepicker/js/bootstrap-datepicker.min.js'
-		});
+    });
 
     app.import({
-	    development: vendor + '/bootstrap-datepicker/css/bootstrap-datepicker.css',
+      development: vendor + '/bootstrap-datepicker/css/bootstrap-datepicker.css',
       production: vendor +  '/bootstrap-datepicker/css/bootstrap-datepicker.min.css'
-		}, { prepend: true });
+    }, { prepend: true });
 
     if (this.bootstrapDatepickerOptions.includeLocales.length) {
-        this.bootstrapDatepickerOptions.includeLocales.forEach(function(locale) {
-          app.import(vendor +
-            '/bootstrap-datepicker/locales/bootstrap-datepicker.' + locale + '.min.js'
-			   );
-	    });
+      this.bootstrapDatepickerOptions.includeLocales.forEach(function(locale) {
+        app.import(vendor +
+          '/bootstrap-datepicker/locales/bootstrap-datepicker.' + locale + '.min.js'
+        );
+      });
     }
   },
 
@@ -71,6 +71,7 @@ module.exports = {
           '/locales/bootstrap-datepicker.' + locale + '.min.js';
 
         if (!fs.existsSync(localePath)) {
+          // eslint-disable-next-line
           console.error(
             'ember-cli-bootstrap-datepicker: Specified locale "' + locale +
             '" not found.'

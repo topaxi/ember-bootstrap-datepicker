@@ -54,12 +54,15 @@ export default Mixin.create({
         });
       }).
       on('changeMonth', event => {
+        // eslint-disable-next-line
         this.sendAction('changeMonth', event.date);
       }).
       on('focusout', event => {
+        // eslint-disable-next-line
         this.sendAction('focus-out', this, event);
       }).
       on('focusin', event => {
+        // eslint-disable-next-line
         this.sendAction('focus-in', this, event);
       }).
       on('clearDate', event => {
@@ -68,9 +71,11 @@ export default Mixin.create({
         });
       }).
       on('show', () => {
+        // eslint-disable-next-line
         this.sendAction('show');
       }).
       on('hide', () => {
+        // eslint-disable-next-line
         this.sendAction('hide');
       });
 
@@ -99,8 +104,10 @@ export default Mixin.create({
     this.set('mustUpdateInput', false);
     this.set('value', value);
     if (event.type === 'clearDate') {
+      // eslint-disable-next-line
       this.sendAction('clearDate');
     } else {
+      // eslint-disable-next-line
       this.sendAction('changeDate', value);
     }
   },
