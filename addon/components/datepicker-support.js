@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import { typeOf, isNone } from '@ember/utils';
+import { observer } from '@ember/object';
+import Mixin from '@ember/object/mixin';
+import { on } from '@ember/object/evented';
+import { run } from '@ember/runloop';
 
-const { on, run } = Ember;
-
-export default Ember.Mixin.create({
+export default Mixin.create({
   mustUpdateInput: true,
   value: null,
   // add the observed properties
@@ -52,12 +54,15 @@ export default Ember.Mixin.create({
         });
       }).
       on('changeMonth', event => {
+        // eslint-disable-next-line
         this.sendAction('changeMonth', event.date);
       }).
       on('focusout', event => {
+        // eslint-disable-next-line
         this.sendAction('focus-out', this, event);
       }).
       on('focusin', event => {
+        // eslint-disable-next-line
         this.sendAction('focus-in', this, event);
       }).
       on('clearDate', event => {
@@ -66,10 +71,12 @@ export default Ember.Mixin.create({
         });
       }).
       on('show', () => {
+        // eslint-disable-next-line
         this.sendAction('show');
       }).
       on('hide', () => {
         this._forceParse();
+        // eslint-disable-next-line
         this.sendAction('hide');
       });
 
@@ -84,7 +91,7 @@ export default Ember.Mixin.create({
     this.$().datepicker('destroy');
   }),
 
-  didChangeValue: Ember.observer('value', function() {
+  didChangeValue: observer('value', function() {
     this._updateDatepicker();
   }),
 
@@ -102,8 +109,10 @@ export default Ember.Mixin.create({
     this.set('mustUpdateInput', false);
     this.set('value', value);
     if (event.type === 'clearDate') {
+      // eslint-disable-next-line
       this.sendAction('clearDate');
     } else {
+      // eslint-disable-next-line
       this.sendAction('changeDate', value);
     }
   },
@@ -156,7 +165,7 @@ export default Ember.Mixin.create({
 
     value = customParser(value);
 
-    switch (Ember.typeOf(value)) {
+    switch (typeOf(value)) {
       case 'array':
         dates = value;
         break;
@@ -167,7 +176,7 @@ export default Ember.Mixin.create({
         dates = [null];
     }
     dates = dates.map(date =>
-      Ember.isNone(date) ? null : this._getDateCloneWithNoTime(date)
+      isNone(date) ? null : this._getDateCloneWithNoTime(date)
     );
 
     element.datepicker('update', ...dates);

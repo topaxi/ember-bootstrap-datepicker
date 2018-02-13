@@ -1,6 +1,6 @@
+import { run } from '@ember/runloop';
 import { test, moduleForComponent } from 'ember-qunit';
 import startApp from '../../helpers/start-app';
-import Ember from 'ember';
 
 var App;
 
@@ -10,7 +10,7 @@ moduleForComponent('bootstrap-datepicker', 'BootstrapDatepickerComponent', {
     App = startApp();
   },
   afterEach: function() {
-    Ember.run(App, 'destroy');
+    run(App, 'destroy');
   }
 });
 
