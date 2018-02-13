@@ -42,13 +42,12 @@ export default Ember.Component.extend(DatepickerSupport, {
 
   forceParse: true,
 
-  focusOut() {
-    if (this.get('forceParse')) {
-      this._forceParse();
-    }
-  },
 
   _forceParse() {
+
+    if (!this.get('forceParse')) {
+      return;
+    }
 
     let date = null,
         format = this.get('format');
