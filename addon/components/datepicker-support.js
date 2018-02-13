@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import { typeOf, isNone } from '@ember/utils';
+import { observer } from '@ember/object';
+import Mixin from '@ember/object/mixin';
+import { on } from '@ember/object/evented';
+import { run } from '@ember/runloop';
 
-const { on, run } = Ember;
-
-export default Ember.Mixin.create({
+export default Mixin.create({
   mustUpdateInput: true,
   value: null,
   // add the observed properties
@@ -79,7 +81,7 @@ export default Ember.Mixin.create({
     this.$().datepicker('destroy');
   }),
 
-  didChangeValue: Ember.observer('value', function() {
+  didChangeValue: observer('value', function() {
     this._updateDatepicker();
   }),
 
@@ -151,7 +153,7 @@ export default Ember.Mixin.create({
 
     value = customParser(value);
 
-    switch (Ember.typeOf(value)) {
+    switch (typeOf(value)) {
       case 'array':
         dates = value;
         break;
@@ -162,7 +164,7 @@ export default Ember.Mixin.create({
         dates = [null];
     }
     dates = dates.map(date =>
-      Ember.isNone(date) ? null : this._getDateCloneWithNoTime(date)
+      isNone(date) ? null : this._getDateCloneWithNoTime(date)
     );
 
     element.datepicker('update', ...dates);
