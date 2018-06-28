@@ -93,6 +93,10 @@ module.exports = {
       trees.push(vendorTree);
     }
 
+    if(!this.bootstrapDatepickerOptions) {
+      this.bootstrapDatepickerOptions = this.getConfig();
+    }
+
     var bootstrapDatepickerPath = this.bootstrapDatepickerOptions.path;
     var datePickerJsTree =  new Funnel(bootstrapDatepickerPath, {
       destDir: 'bootstrap-datepicker',
