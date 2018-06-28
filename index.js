@@ -93,7 +93,7 @@ module.exports = {
       trees.push(vendorTree);
     }
 
-    if(!this.bootstrapDatepickerOptions) {
+    if(!this.bootstrapDatepickerOptions && this.getConfig) {
       this.bootstrapDatepickerOptions = this.getConfig();
     }
 
